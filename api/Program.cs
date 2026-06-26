@@ -3,6 +3,14 @@ using PortfolioApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Hosts like Render inject the listening port via the PORT env var.
+// Only override when it's present so local dev (launchSettings) is unaffected.
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrEmpty(port))
+{
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+}
+
 // --- Database (SQLite) ---
 var connectionString = builder.Configuration.GetConnectionString("Default")
     ?? "Data Source=portfolio.db";

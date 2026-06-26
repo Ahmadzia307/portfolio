@@ -1,0 +1,16 @@
+# Render Blueprint — provisions the .NET API as a free Docker web service.
+# Deploy: render.com → New + → Blueprint → connect this repo → Apply.
+services:
+  - type: web
+    name: portfolio-api
+    runtime: docker
+    plan: free
+    region: oregon
+    rootDir: api
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      # Allow the GitHub Pages frontend to call this API (CORS).
+      - key: Cors__AllowedOrigins__0
+        value: https://ahmadzia307.github.io
