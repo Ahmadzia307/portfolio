@@ -1,11 +1,13 @@
-import { Grid, Box, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Grid, Box, Typography, List, ListItem, ListItemIcon, ListItemText, Chip, Stack } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import VerifiedIcon from '@mui/icons-material/Verified';
+import SchoolIcon from '@mui/icons-material/School';
 import Section from './Section';
 import Reveal from './Reveal';
 import { MONO } from '../theme';
 import { SITE } from '../config';
 
-const TECH = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Node.js', 'C# / .NET', 'SQL Server'];
+const TECH = ['C# / .NET Core', 'ASP.NET Core', 'React & Redux', 'Angular', 'Azure & AWS', 'SQL Server'];
 
 export default function About() {
   return (
@@ -14,17 +16,17 @@ export default function About() {
         <Grid container spacing={6}>
           <Grid size={{ xs: 12, md: 7 }}>
             <Typography color="text.secondary" sx={{ mb: 2 }}>
-              Hello! I'm Muhammad, a developer who enjoys turning complex problems into
-              clean, intuitive software. My work spans the full stack — from crafting
-              responsive interfaces to designing the data models and services that power them.
+              I'm a Senior Software Engineer based in {SITE.location}, with 8+ years building and
+              modernizing enterprise-scale web applications. My work spans the full stack — from
+              system design and cloud-native backends to polished React and Angular interfaces.
             </Typography>
             <Typography color="text.secondary" sx={{ mb: 2 }}>
-              I currently work on enterprise CRM systems, where I've built features like
-              configurable pricing engines (CPQ), OAuth integrations, and data-driven
-              dashboards. I care deeply about code quality, performance, and building things
-              that are a pleasure to use.
+              I've led teams of 4+ engineers, driven architectural decisions, modernized legacy
+              systems, and delivered scalable SaaS and CRM products for clients across the USA and
+              Canada. I care deeply about performance, clean architecture, and shipping software
+              that's a pleasure to use.
             </Typography>
-            <Typography color="text.secondary">Technologies I've been working with recently:</Typography>
+            <Typography color="text.secondary">Technologies I work with day to day:</Typography>
             <Grid container sx={{ mt: 1 }}>
               {TECH.map((t) => (
                 <Grid size={6} key={t}>
@@ -42,6 +44,11 @@ export default function About() {
                 </Grid>
               ))}
             </Grid>
+
+            <Stack direction="row" spacing={1} sx={{ mt: 3, flexWrap: 'wrap', gap: 1 }}>
+              <Chip icon={<VerifiedIcon />} label="Microsoft Certified: Azure AI Fundamentals" variant="outlined" />
+              <Chip icon={<SchoolIcon />} label="BS Information Technology — PUCIT" variant="outlined" />
+            </Stack>
           </Grid>
 
           <Grid size={{ xs: 12, md: 5 }}>

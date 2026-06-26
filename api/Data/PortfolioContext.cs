@@ -26,34 +26,56 @@ public class PortfolioContext : DbContext
             new Project
             {
                 Id = 1,
-                Title = "CPQ Pricing Engine",
-                Description = "A configurable Configure-Price-Quote engine that calculates complex pricing with fees, attachments, and MSRP handling for an enterprise CRM.",
-                Tags = "C#,.NET,SQL Server",
-                RepoUrl = "https://github.com/Ahmadzia307",
-                LiveUrl = null,
+                Title = "TargetCRM",
+                Description = "Enterprise CRM for outdoor power equipment dealers across the USA & Canada. Built Facebook Messenger & Instagram integrations with OAuth 2.0 and speech-to-text, and tuned database performance across core modules.",
+                Tags = ".NET Core,React,Azure Functions,Azure SQL,OAuth 2.0",
+                RepoUrl = null,
+                LiveUrl = "https://learntargetcrm.com",
                 SortOrder = 1,
                 Featured = true
             },
             new Project
             {
                 Id = 2,
-                Title = "DMS OAuth Integration",
-                Description = "Secure OAuth 2.0 integration connecting a CRM platform with external dealer management systems, handling token exchange and refresh flows.",
-                Tags = "Node.js,OAuth 2.0,REST",
-                RepoUrl = "https://github.com/Ahmadzia307",
-                LiveUrl = null,
+                Title = "Virtual Academy",
+                Description = "Public-safety and law-enforcement training platform for US clients. Led a team of 4+ engineers building scalable .NET 6 Web APIs and Angular interfaces with AWS (S3, EC2, SES) integrations.",
+                Tags = ".NET 6,Angular,AWS,Web API,SQL Server",
+                RepoUrl = null,
+                LiveUrl = "https://virtualacademy.com",
                 SortOrder = 2,
                 Featured = true
             },
             new Project
             {
                 Id = 3,
-                Title = "This Portfolio",
-                Description = "A full-stack portfolio: React + TypeScript frontend on GitHub Pages, .NET Core Web API with EF Core on Azure App Service.",
-                Tags = "React,TypeScript,.NET,EF Core",
-                RepoUrl = "https://github.com/Ahmadzia307",
-                LiveUrl = null,
+                Title = "Artvisor",
+                Description = "Artwork and exhibition management platform. Owned solution design, architecture, and project planning, translating business needs into scalable technical solutions.",
+                Tags = "C#,ASP.NET Core,SQL Server,AWS",
+                RepoUrl = null,
+                LiveUrl = "https://artvisor.com",
                 SortOrder = 3,
+                Featured = true
+            },
+            new Project
+            {
+                Id = 4,
+                Title = "YieldWerx",
+                Description = "Semiconductor yield-analysis and reporting platform. Built REST APIs, Windows Services, and reporting solutions, collaborating with global teams to ship production-ready features.",
+                Tags = "ASP.NET,C#,Entity Framework,Windows Services",
+                RepoUrl = null,
+                LiveUrl = "https://yieldwerx.com",
+                SortOrder = 4,
+                Featured = true
+            },
+            new Project
+            {
+                Id = 5,
+                Title = "This Portfolio",
+                Description = "A full-stack portfolio: React + TypeScript + MUI frontend on GitHub Pages, .NET Core Web API with EF Core on Azure App Service.",
+                Tags = "React,TypeScript,.NET,EF Core,MUI",
+                RepoUrl = "https://github.com/Ahmadzia307/portfolio",
+                LiveUrl = "https://ahmadzia307.github.io/portfolio/",
+                SortOrder = 5,
                 Featured = true
             }
         );
@@ -62,9 +84,9 @@ public class PortfolioContext : DbContext
             new BlogPost
             {
                 Id = 1,
-                Title = "Deploying a .NET API for Free",
-                Slug = "deploying-dotnet-api-free",
-                Summary = "How I hosted this portfolio's backend on Azure App Service's free tier with zero cost.",
+                Title = "Migrating a Large React App from MUI v4 to v7",
+                Slug = "mui-v4-to-v7-migration",
+                Summary = "Lessons from upgrading a production React codebase across four major Material UI versions without breaking the UI.",
                 Content = "Full post content goes here. Edit this in the database or via the API.",
                 PublishedAt = new DateTime(2026, 1, 15, 0, 0, 0, DateTimeKind.Utc),
                 Published = true
@@ -72,9 +94,9 @@ public class PortfolioContext : DbContext
             new BlogPost
             {
                 Id = 2,
-                Title = "Why I Built My Portfolio Full-Stack",
-                Slug = "portfolio-full-stack",
-                Summary = "Serving content from a real API instead of hardcoded HTML — and what it taught me.",
+                Title = "A Zero-Downtime UserID Migration (int → varchar)",
+                Slug = "zero-downtime-userid-migration",
+                Summary = "How we re-architected a CRM's identity model across schema, backend, and frontend to enable DMS integration — with no production disruption.",
                 Content = "Full post content goes here. Edit this in the database or via the API.",
                 PublishedAt = new DateTime(2026, 2, 2, 0, 0, 0, DateTimeKind.Utc),
                 Published = true

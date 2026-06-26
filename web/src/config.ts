@@ -2,8 +2,10 @@
 export const SITE = {
   name: 'Muhammad Ahmad',
   initials: 'MA',
-  role: 'I build things for the web.',
+  title: 'Senior Software Engineer',
+  tagline: 'I build enterprise-scale web applications.',
+  location: 'Lahore, Pakistan',
   github: 'https://github.com/Ahmadzia307',
-  linkedin: 'https://linkedin.com/',
-  email: 'muhammad.ahmad@constellationdealer.com',
+  linkedin: 'https://www.linkedin.com/in/muhammad-ahmad-46272a121',
+  email: 'ahmadzia307@gmail.com',
 };

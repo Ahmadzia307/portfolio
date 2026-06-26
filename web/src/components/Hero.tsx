@@ -1,4 +1,5 @@
-import { Box, Container, Typography, Button, Stack, Link } from '@mui/material';
+import { Box, Container, Typography, Button, Stack, Link, Chip } from '@mui/material';
+import PlaceIcon from '@mui/icons-material/Place';
 import { MONO } from '../theme';
 import { SITE } from '../config';
 
@@ -8,7 +9,7 @@ export default function Hero() {
       id="home"
       sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', pt: '70px' }}
     >
-      <Container sx={{ maxWidth: 760 }}>
+      <Container sx={{ maxWidth: 820 }}>
         <Typography sx={{ color: 'primary.main', fontFamily: MONO, mb: 2 }}>
           Hi, my name is
         </Typography>
@@ -17,14 +18,22 @@ export default function Hero() {
         </Typography>
         <Typography
           variant="h2"
-          sx={{ color: 'text.secondary', fontSize: 'clamp(1.8rem, 6vw, 3.8rem)', mb: 3 }}
+          sx={{ color: 'text.secondary', fontSize: 'clamp(1.6rem, 6vw, 3.4rem)', mb: 2 }}
         >
-          {SITE.role}
+          {SITE.tagline}
         </Typography>
-        <Typography sx={{ color: 'text.secondary', fontSize: '1.1rem', maxWidth: 560, mb: 4 }}>
-          I'm a software developer focused on building accessible, high-quality web
-          applications. Currently crafting CRM solutions and pricing engines that real
-          businesses rely on every day.
+
+        <Stack direction="row" spacing={1.5} sx={{ mb: 3, flexWrap: 'wrap', gap: 1 }}>
+          <Chip label={SITE.title} color="primary" variant="outlined" />
+          <Chip icon={<PlaceIcon />} label={SITE.location} variant="outlined" />
+          <Chip label="8+ years" variant="outlined" />
+        </Stack>
+
+        <Typography sx={{ color: 'text.secondary', fontSize: '1.1rem', maxWidth: 640, mb: 4 }}>
+          Senior Software Engineer with 8+ years designing and modernizing enterprise-scale
+          web applications with .NET, ASP.NET Core, React, Angular, Azure, and AWS. I lead
+          teams, drive architecture decisions, and ship scalable SaaS and CRM products for
+          North American clients.
         </Typography>
 
         <Stack direction="row" spacing={2} sx={{ mb: 5, flexWrap: 'wrap', gap: 2 }}>
