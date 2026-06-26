@@ -1,0 +1,8 @@
+bin/
+obj/
+*.user
+
+# SQLite database files (created at runtime / seeded on startup)
+*.db
+*.db-shm
+*.db-wal
