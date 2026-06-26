@@ -16,9 +16,9 @@ import { api } from './api';
 export default function App() {
   const { setting, setSetting, resolvedMode } = useThemeMode();
 
-  // Record a single page view (best-effort, non-blocking).
+  // Record a single page view (best-effort, non-blocking; no-op without a backend).
   useEffect(() => {
-    api.recordVisit(window.location.pathname);
+    api.recordVisit();
   }, []);
 
   const theme = useMemo(() => getTheme(resolvedMode), [resolvedMode]);
