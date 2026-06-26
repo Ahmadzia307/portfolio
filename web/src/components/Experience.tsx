@@ -8,19 +8,19 @@ const ROLES = [
     date: 'Jan 2024 — Present',
     title: 'Senior Software Developer',
     company: '@ Contour Software',
-    body: 'Build and maintain TargetCRM, an enterprise CRM for outdoor power equipment dealers across the USA & Canada (.NET Core, React, Azure Functions, Azure SQL). Delivered Facebook Messenger & Instagram integrations with OAuth 2.0 and speech-to-text, led a React MUI v4→v7 migration, re-architected the user identity model for DMS integration with zero downtime, and tuned database performance across core modules.',
+    body: 'Build and maintain TargetCRM, an enterprise CRM for outdoor power equipment dealers across the USA & Canada (.NET Core, React, Azure Functions, Azure SQL). Delivered Facebook Messenger & Instagram integrations with OAuth 2.0 and speech-to-text, led a React MUI v4→v7 migration, revamped the Automation Module, and tuned database performance across core modules.',
   },
   {
     date: 'Feb 2022 — Jan 2024',
     title: 'Senior Software Engineer',
     company: '@ Tkxel',
-    body: 'Led a team of 4+ engineers on Virtual Academy, a public-safety and law-enforcement training platform for US clients. Built scalable Web APIs in .NET 6 and Angular UIs, integrated AWS (S3, EC2, SES), drove sprint planning as a client-facing resource, and mentored junior developers.',
+    body: 'Led a team of 4+ engineers on Virtual Academy, a public-safety and law-enforcement training platform for US clients. Built scalable Web APIs in .NET 6 and Angular UIs, integrated cloud storage and email services, drove sprint planning as a client-facing resource, and mentored junior developers.',
   },
   {
     date: 'Jan 2021 — Feb 2022',
     title: 'Software Engineer',
     company: '@ Tkxel',
-    body: 'Led development across multiple client projects including Artvisor (artwork & exhibition management), RW3, and Artnet. Owned solution design, architecture, and project planning while running daily scrums (C#, ASP.NET Core, SQL Server, AWS).',
+    body: 'Led development across multiple client projects including Artvisor (artwork & exhibition management), RW3, and Artnet. Owned solution design, architecture, and project planning while running daily scrums (C#, ASP.NET Core, SQL Server).',
   },
   {
     date: 'Jan 2019 — Dec 2020',

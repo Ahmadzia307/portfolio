@@ -7,7 +7,7 @@ import Reveal from './Reveal';
 import { MONO } from '../theme';
 import { SITE } from '../config';
 
-const TECH = ['C# / .NET Core', 'ASP.NET Core', 'React & Redux', 'Angular', 'Azure & AWS', 'SQL Server'];
+const TECH = ['C# / .NET Core', 'ASP.NET Core', 'React & Redux', 'Angular', 'Microsoft Azure', 'SQL Server'];
 
 export default function About() {
   return (

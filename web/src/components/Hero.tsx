@@ -31,9 +31,9 @@ export default function Hero() {
 
         <Typography sx={{ color: 'text.secondary', fontSize: '1.1rem', maxWidth: 640, mb: 4 }}>
           Senior Software Engineer with 8+ years designing and modernizing enterprise-scale
-          web applications with .NET, ASP.NET Core, React, Angular, Azure, and AWS. I lead
-          teams, drive architecture decisions, and ship scalable SaaS and CRM products for
-          North American clients.
+          web applications with .NET, ASP.NET Core, React, Angular, and Azure. I lead teams,
+          drive architecture decisions, and ship scalable SaaS and CRM products for North
+          American clients.
         </Typography>
 
         <Stack direction="row" spacing={2} sx={{ mb: 5, flexWrap: 'wrap', gap: 2 }}>

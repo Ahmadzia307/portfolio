@@ -38,8 +38,8 @@ public class PortfolioContext : DbContext
             {
                 Id = 2,
                 Title = "Virtual Academy",
-                Description = "Public-safety and law-enforcement training platform for US clients. Led a team of 4+ engineers building scalable .NET 6 Web APIs and Angular interfaces with AWS (S3, EC2, SES) integrations.",
-                Tags = ".NET 6,Angular,AWS,Web API,SQL Server",
+                Description = "Public-safety and law-enforcement training platform for US clients. Led a team of 4+ engineers building scalable .NET 6 Web APIs and Angular interfaces with cloud storage and email integrations.",
+                Tags = ".NET 6,Angular,Web API,SQL Server",
                 RepoUrl = null,
                 LiveUrl = "https://virtualacademy.com",
                 SortOrder = 2,
@@ -50,7 +50,7 @@ public class PortfolioContext : DbContext
                 Id = 3,
                 Title = "Artvisor",
                 Description = "Artwork and exhibition management platform. Owned solution design, architecture, and project planning, translating business needs into scalable technical solutions.",
-                Tags = "C#,ASP.NET Core,SQL Server,AWS",
+                Tags = "C#,ASP.NET Core,SQL Server",
                 RepoUrl = null,
                 LiveUrl = "https://artvisor.com",
                 SortOrder = 3,
@@ -94,9 +94,9 @@ public class PortfolioContext : DbContext
             new BlogPost
             {
                 Id = 2,
-                Title = "A Zero-Downtime UserID Migration (int → varchar)",
-                Slug = "zero-downtime-userid-migration",
-                Summary = "How we re-architected a CRM's identity model across schema, backend, and frontend to enable DMS integration — with no production disruption.",
+                Title = "Building Facebook & Instagram Integrations into a CRM",
+                Slug = "crm-social-integrations",
+                Summary = "How we let dealers engage customers directly from the CRM using OAuth 2.0, Messenger, Instagram, and speech-to-text input.",
                 Content = "Full post content goes here. Edit this in the database or via the API.",
                 PublishedAt = new DateTime(2026, 2, 2, 0, 0, 0, DateTimeKind.Utc),
                 Published = true

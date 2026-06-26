@@ -6,7 +6,7 @@ const GROUPS = [
   { title: 'Languages', items: ['C#', 'JavaScript', 'TypeScript', 'SQL'] },
   { title: 'Backend', items: ['.NET Core / 6 / 8 / 9', 'ASP.NET Core & Web API', 'Entity Framework, Dapper, LINQ', 'Windows Services'] },
   { title: 'Frontend', items: ['React.js & Redux', 'Angular', 'Material UI (MUI)', 'HTML5, CSS3, jQuery'] },
-  { title: 'Cloud & DevOps', items: ['Azure (Functions, SQL, DevOps)', 'AWS (EC2, S3, SES)', 'CI/CD Pipelines', 'Git & Bitbucket'] },
+  { title: 'Cloud & DevOps', items: ['Azure (Functions, SQL, DevOps)', 'CI/CD Pipelines', 'Git & Bitbucket', 'AWS (S3, EC2) — basics'] },
   { title: 'Architecture', items: ['System & API Design', 'Microservices', 'Distributed Systems', 'SOLID & Design Patterns'] },
   { title: 'Practices', items: ['Agile / Scrum', 'Code Reviews', 'Mentoring & Team Lead', 'Performance Tuning'] },
 ];
