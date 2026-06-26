@@ -29,7 +29,7 @@ public class PortfolioContext : DbContext
                 Title = "CPQ Pricing Engine",
                 Description = "A configurable Configure-Price-Quote engine that calculates complex pricing with fees, attachments, and MSRP handling for an enterprise CRM.",
                 Tags = "C#,.NET,SQL Server",
-                RepoUrl = "https://github.com/",
+                RepoUrl = "https://github.com/Ahmadzia307",
                 LiveUrl = null,
                 SortOrder = 1,
                 Featured = true
@@ -40,7 +40,7 @@ public class PortfolioContext : DbContext
                 Title = "DMS OAuth Integration",
                 Description = "Secure OAuth 2.0 integration connecting a CRM platform with external dealer management systems, handling token exchange and refresh flows.",
                 Tags = "Node.js,OAuth 2.0,REST",
-                RepoUrl = "https://github.com/",
+                RepoUrl = "https://github.com/Ahmadzia307",
                 LiveUrl = null,
                 SortOrder = 2,
                 Featured = true
@@ -51,7 +51,7 @@ public class PortfolioContext : DbContext
                 Title = "This Portfolio",
                 Description = "A full-stack portfolio: React + TypeScript frontend on GitHub Pages, .NET Core Web API with EF Core on Azure App Service.",
                 Tags = "React,TypeScript,.NET,EF Core",
-                RepoUrl = "https://github.com/",
+                RepoUrl = "https://github.com/Ahmadzia307",
                 LiveUrl = null,
                 SortOrder = 3,
                 Featured = true

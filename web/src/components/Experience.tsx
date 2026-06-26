@@ -1,11 +1,14 @@
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { Box, Typography } from '@mui/material';
+import Section from './Section';
+import Reveal from './Reveal';
+import { MONO } from '../theme';
 
 const ROLES = [
   {
     date: '2023 — Present',
     title: 'Software Developer',
     company: '@ Constellation Dealer',
-    body: "Build and maintain enterprise CRM features including a CPQ pricing engine, OAuth integrations, and reporting dashboards. Collaborate across teams to ship reliable, well-tested software.",
+    body: 'Build and maintain enterprise CRM features including a CPQ pricing engine, OAuth integrations, and reporting dashboards. Collaborate across teams to ship reliable, well-tested software.',
   },
   {
     date: '20XX — 20XX',
@@ -16,25 +19,29 @@ const ROLES = [
 ];
 
 export default function Experience() {
-  const ref = useScrollReveal<HTMLElement>();
-
   return (
-    <section className="section" id="experience" ref={ref}>
-      <div className="container">
-        <h2 className="section__title"><span className="section__num">05.</span> Experience</h2>
-        <div className="timeline">
+    <Section id="experience" num="05." title="Experience">
+      <Reveal>
+        <Box sx={{ position: 'relative', pl: 4 }}>
+          {/* vertical line */}
+          <Box sx={{ position: 'absolute', left: '5px', top: 8, bottom: 8, width: '2px', bgcolor: 'divider' }} />
           {ROLES.map((r) => (
-            <div className="timeline__item" key={r.title}>
-              <div className="timeline__dot" />
-              <div className="timeline__content">
-                <span className="timeline__date">{r.date}</span>
-                <h3>{r.title} <span>{r.company}</span></h3>
-                <p>{r.body}</p>
-              </div>
-            </div>
+            <Box key={r.title} sx={{ position: 'relative', pb: 6, '&:last-of-type': { pb: 0 } }}>
+              <Box
+                sx={{
+                  position: 'absolute', left: -32, top: 6, width: 12, height: 12, borderRadius: '50%',
+                  bgcolor: 'primary.main', boxShadow: (t) => `0 0 0 4px ${t.palette.action.hover}`,
+                }}
+              />
+              <Typography sx={{ color: 'primary.main', fontFamily: MONO, fontSize: '0.82rem' }}>{r.date}</Typography>
+              <Typography variant="h6" sx={{ my: 0.5 }}>
+                {r.title} <Box component="span" sx={{ color: 'primary.main', fontWeight: 500 }}>{r.company}</Box>
+              </Typography>
+              <Typography color="text.secondary" sx={{ fontSize: '0.95rem' }}>{r.body}</Typography>
+            </Box>
           ))}
-        </div>
-      </div>
-    </section>
+        </Box>
+      </Reveal>
+    </Section>
   );
 }

@@ -1,55 +1,66 @@
 import { useEffect, useState } from 'react';
+import {
+  Grid, Card, CardContent, Typography, Chip, Stack, Box, IconButton, CircularProgress, Alert,
+} from '@mui/material';
+import FolderIcon from '@mui/icons-material/Folder';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LaunchIcon from '@mui/icons-material/Launch';
+import Section from './Section';
+import Reveal from './Reveal';
 import { api } from '../api';
 import type { Project } from '../types';
-import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function Projects() {
-  const ref = useScrollReveal<HTMLElement>();
   const [projects, setProjects] = useState<Project[]>([]);
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading');
 
   useEffect(() => {
-    api
-      .getProjects()
+    api.getProjects()
       .then((data) => { setProjects(data); setStatus('ok'); })
       .catch(() => setStatus('error'));
   }, []);
 
   return (
-    <section className="section" id="projects" ref={ref}>
-      <div className="container">
-        <h2 className="section__title"><span className="section__num">03.</span> Featured Projects</h2>
+    <Section id="projects" num="03." title="Featured Projects">
+      {status === 'loading' && <CircularProgress color="primary" />}
+      {status === 'error' && <Alert severity="error">Couldn't reach the API. Is the backend running?</Alert>}
 
-        {status === 'loading' && <p className="loading">Loading projects…</p>}
-        {status === 'error' && (
-          <p className="error-msg">Couldn't reach the API. Is the backend running?</p>
-        )}
-
-        {status === 'ok' && (
-          <div className="projects">
-            {projects.map((p) => (
-              <article className="project-card" key={p.id}>
-                <div className="project-card__top">
-                  <span className="project-card__folder">📁</span>
-                  <div className="project-card__links">
-                    {p.repoUrl && (
-                      <a href={p.repoUrl} target="_blank" rel="noopener noreferrer">Code</a>
-                    )}
-                    {p.liveUrl && (
-                      <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">Live</a>
-                    )}
-                  </div>
-                </div>
-                <h3 className="project-card__title">{p.title}</h3>
-                <p className="project-card__desc">{p.description}</p>
-                <ul className="project-card__tags">
-                  {p.tags.map((t) => <li key={t}>{t}</li>)}
-                </ul>
-              </article>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+      {status === 'ok' && (
+        <Grid container spacing={3}>
+          {projects.map((p) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={p.id}>
+              <Reveal>
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                  <CardContent sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                      <FolderIcon color="primary" fontSize="large" />
+                      <Box>
+                        {p.repoUrl && (
+                          <IconButton size="small" href={p.repoUrl} target="_blank" rel="noopener noreferrer" aria-label="Source code">
+                            <GitHubIcon fontSize="small" />
+                          </IconButton>
+                        )}
+                        {p.liveUrl && (
+                          <IconButton size="small" href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live demo">
+                            <LaunchIcon fontSize="small" />
+                          </IconButton>
+                        )}
+                      </Box>
+                    </Box>
+                    <Typography variant="h6" gutterBottom>{p.title}</Typography>
+                    <Typography color="text.secondary" sx={{ fontSize: '0.95rem', flexGrow: 1, mb: 2 }}>
+                      {p.description}
+                    </Typography>
+                    <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
+                      {p.tags.map((t) => <Chip key={t} label={t} size="small" variant="outlined" />)}
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Reveal>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Section>
   );
 }

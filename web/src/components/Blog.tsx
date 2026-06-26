@@ -1,48 +1,49 @@
 import { useEffect, useState } from 'react';
+import { Stack, Card, CardActionArea, CardContent, Typography, CircularProgress, Alert } from '@mui/material';
+import Section from './Section';
+import Reveal from './Reveal';
 import { api } from '../api';
 import type { BlogPostSummary } from '../types';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { MONO } from '../theme';
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 export default function Blog() {
-  const ref = useScrollReveal<HTMLElement>();
   const [posts, setPosts] = useState<BlogPostSummary[]>([]);
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading');
 
   useEffect(() => {
-    api
-      .getBlogPosts()
+    api.getBlogPosts()
       .then((data) => { setPosts(data); setStatus('ok'); })
       .catch(() => setStatus('error'));
   }, []);
 
   return (
-    <section className="section section--alt" id="blog" ref={ref}>
-      <div className="container">
-        <h2 className="section__title"><span className="section__num">04.</span> Latest Writing</h2>
+    <Section id="blog" num="04." title="Latest Writing" alt>
+      {status === 'loading' && <CircularProgress color="primary" />}
+      {status === 'error' && <Alert severity="error">Couldn't load blog posts.</Alert>}
 
-        {status === 'loading' && <p className="loading">Loading posts…</p>}
-        {status === 'error' && <p className="error-msg">Couldn't load blog posts.</p>}
-
-        {status === 'ok' && (
-          <div className="blog">
-            {posts.map((p) => (
-              <article className="blog-card" key={p.id}>
-                <span className="blog-card__date">{formatDate(p.publishedAt)}</span>
-                <h3 className="blog-card__title">{p.title}</h3>
-                <p className="blog-card__summary">{p.summary}</p>
-              </article>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+      {status === 'ok' && (
+        <Stack spacing={2.5}>
+          {posts.map((p) => (
+            <Reveal key={p.id}>
+              <Card>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography sx={{ color: 'primary.main', fontFamily: MONO, fontSize: '0.8rem' }}>
+                      {formatDate(p.publishedAt)}
+                    </Typography>
+                    <Typography variant="h6" sx={{ mt: 0.5, mb: 1 }}>{p.title}</Typography>
+                    <Typography color="text.secondary" sx={{ fontSize: '0.95rem' }}>{p.summary}</Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Reveal>
+          ))}
+        </Stack>
+      )}
+    </Section>
   );
 }

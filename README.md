@@ -2,7 +2,7 @@
 
 A full-stack portfolio website:
 
-- **`web/`** — React + TypeScript (Vite) frontend → deploys to **GitHub Pages** (free)
+- **`web/`** — React + TypeScript + **Material UI (MUI)** (Vite) frontend → deploys to **GitHub Pages** (free)
 - **`api/`** — .NET 10 Web API + EF Core + SQLite → deploys to **Azure App Service** (free F1 tier)
 
 The frontend fetches projects, blog posts, and visit stats from the API, and
@@ -73,7 +73,8 @@ A workflow is already included at `.github/workflows/deploy-frontend.yml`.
    URL (e.g. `https://my-portfolio-api.azurewebsites.net`).
 4. Push to `main`. The action builds `web/` and publishes it.
 
-Your site will be at `https://YOUR_USERNAME.github.io/YOUR_REPO/`.
+Your site will be at `https://ahmadzia307.github.io/YOUR_REPO/` (replace
+`YOUR_REPO` with the repository name you push to).
 
 > The workflow sets `VITE_BASE` to `/REPO/` automatically so asset paths resolve
 > correctly on a project page. If you use a custom domain or a `USER.github.io`
@@ -102,7 +103,7 @@ Then point the API at your frontend so CORS allows it. In the Azure Portal
 
 | Name | Value |
 |------|-------|
-| `Cors__AllowedOrigins__0` | `https://YOUR_USERNAME.github.io` |
+| `Cors__AllowedOrigins__0` | `https://ahmadzia307.github.io` |
 
 (Double underscores map to nested config keys.) Save and restart.
 
@@ -127,4 +128,5 @@ Verify: open `https://my-portfolio-api.azurewebsites.net/swagger`.
 | Skills | `web/src/components/Skills.tsx` |
 | Experience timeline | `web/src/components/Experience.tsx` |
 | Projects & blog **content** | seeded in `api/Data/PortfolioContext.cs` (edit and delete `portfolio.db` to re-seed) |
-| Colors / theme | `web/src/index.css` (`:root` and `[data-theme='light']`) |
+| Colors / theme | `web/src/theme.ts` (MUI palette for dark + light modes) |
+| Name, GitHub, LinkedIn, email | `web/src/config.ts` (one place, used everywhere) |

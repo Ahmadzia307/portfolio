@@ -1,4 +1,13 @@
 import { useEffect, useState } from 'react';
+import {
+  AppBar, Toolbar, Container, Box, Button, IconButton,
+  Drawer, List, ListItem, ListItemButton, ListItemText, Typography, useScrollTrigger,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import type { Mode } from '../theme';
+import { SITE } from '../config';
 
 const LINKS = [
   { href: '#about', label: 'About' },
@@ -9,27 +18,16 @@ const LINKS = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export default function Nav() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export default function Nav({ mode, onToggle }: { mode: Mode; onToggle: () => void }) {
+  const [open, setOpen] = useState(false);
+  const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
+
+  // Hide the bar when scrolling down, reveal when scrolling up.
   const [hidden, setHidden] = useState(false);
-
-  // Initialize theme from storage / OS preference.
-  useEffect(() => {
-    const stored = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    const initial = stored ?? (prefersLight ? 'light' : 'dark');
-    setTheme(initial);
-    document.documentElement.setAttribute('data-theme', initial);
-  }, []);
-
-  // Hide-on-scroll-down behaviour.
   useEffect(() => {
     let lastY = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 20);
       setHidden(y > lastY && y > 200);
       lastY = y;
     };
@@ -37,39 +35,63 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  };
-
   return (
-    <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${hidden ? 'nav--hidden' : ''}`}>
-      <div className="container nav__inner">
-        <a className="nav__logo" href="#home">MA<span>.</span></a>
-
-        <nav className={`nav__links ${menuOpen ? 'open' : ''}`}>
-          {LINKS.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="nav__actions">
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-            {theme === 'light' ? '☀️' : '🌙'}
-          </button>
-          <button
-            className={`nav__burger ${menuOpen ? 'open' : ''}`}
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label="Toggle menu"
+    <AppBar
+      position="fixed"
+      color="transparent"
+      elevation={scrolled ? 4 : 0}
+      sx={{
+        backdropFilter: 'blur(10px)',
+        bgcolor: (t) =>
+          `color-mix(in srgb, ${t.palette.background.default} 85%, transparent)`,
+        transform: hidden ? 'translateY(-100%)' : 'none',
+        transition: 'transform .3s ease',
+      }}
+    >
+      <Container>
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+          <Typography
+            component="a" href="#home"
+            sx={{ fontWeight: 800, fontSize: '1.5rem', color: 'primary.main', textDecoration: 'none' }}
           >
-            <span /><span /><span />
-          </button>
-        </div>
-      </div>
-    </header>
+            {SITE.initials}<Box component="span" sx={{ color: 'text.primary' }}>.</Box>
+          </Typography>
+
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
+            {LINKS.map((l) => (
+              <Button key={l.href} href={l.href} color="inherit" sx={{ fontWeight: 500 }}>
+                {l.label}
+              </Button>
+            ))}
+          </Box>
+
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <IconButton onClick={onToggle} aria-label="Toggle theme" color="primary">
+              {mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+            </IconButton>
+            <IconButton
+              onClick={() => setOpen(true)} aria-label="Open menu" color="primary"
+              sx={{ display: { xs: 'inline-flex', md: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </Container>
+
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
+        <Box sx={{ width: 260 }} role="presentation" onClick={() => setOpen(false)}>
+          <List sx={{ mt: 4 }}>
+            {LINKS.map((l) => (
+              <ListItem key={l.href} disablePadding>
+                <ListItemButton component="a" href={l.href}>
+                  <ListItemText primary={l.label} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
+    </AppBar>
   );
 }
