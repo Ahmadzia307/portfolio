@@ -39,6 +39,11 @@ export function getTheme(mode: Mode): Theme {
     },
     shape: { borderRadius: 8 },
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: { transition: 'background-color .3s ease, color .3s ease' },
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: { paddingInline: 24, paddingBlock: 11 },

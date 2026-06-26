@@ -2,12 +2,21 @@ import { useEffect, useState } from 'react';
 import {
   AppBar, Toolbar, Container, Box, Button, IconButton,
   Drawer, List, ListItem, ListItemButton, ListItemText, Typography, useScrollTrigger,
+  Menu, MenuItem, ListItemIcon,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import type { Mode } from '../theme';
+import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
+import CheckIcon from '@mui/icons-material/Check';
+import type { ThemeSetting } from '../useThemeMode';
 import { SITE } from '../config';
+
+const THEME_OPTIONS: { value: ThemeSetting; label: string; icon: React.ReactNode }[] = [
+  { value: 'light', label: 'Light', icon: <LightModeIcon fontSize="small" /> },
+  { value: 'dark', label: 'Dark', icon: <DarkModeIcon fontSize="small" /> },
+  { value: 'system', label: 'System', icon: <SettingsBrightnessIcon fontSize="small" /> },
+];
 
 const LINKS = [
   { href: '#about', label: 'About' },
@@ -18,9 +27,19 @@ const LINKS = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export default function Nav({ mode, onToggle }: { mode: Mode; onToggle: () => void }) {
+export default function Nav({
+  setting,
+  onSetSetting,
+}: {
+  setting: ThemeSetting;
+  onSetSetting: (s: ThemeSetting) => void;
+}) {
   const [open, setOpen] = useState(false);
+  const [themeAnchor, setThemeAnchor] = useState<null | HTMLElement>(null);
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 20 });
+
+  const ThemeIcon =
+    setting === 'light' ? LightModeIcon : setting === 'dark' ? DarkModeIcon : SettingsBrightnessIcon;
 
   // Hide the bar when scrolling down, reveal when scrolling up.
   const [hidden, setHidden] = useState(false);
@@ -66,9 +85,35 @@ export default function Nav({ mode, onToggle }: { mode: Mode; onToggle: () => vo
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <IconButton onClick={onToggle} aria-label="Toggle theme" color="primary">
-              {mode === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
+            <IconButton
+              onClick={(e) => setThemeAnchor(e.currentTarget)}
+              aria-label="Change theme"
+              aria-haspopup="true"
+              color="primary"
+            >
+              <ThemeIcon />
             </IconButton>
+            <Menu
+              anchorEl={themeAnchor}
+              open={Boolean(themeAnchor)}
+              onClose={() => setThemeAnchor(null)}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            >
+              {THEME_OPTIONS.map((opt) => (
+                <MenuItem
+                  key={opt.value}
+                  selected={setting === opt.value}
+                  onClick={() => { onSetSetting(opt.value); setThemeAnchor(null); }}
+                >
+                  <ListItemIcon>{opt.icon}</ListItemIcon>
+                  <ListItemText>{opt.label}</ListItemText>
+                  {setting === opt.value && (
+                    <CheckIcon fontSize="small" sx={{ ml: 2, color: 'primary.main' }} />
+                  )}
+                </MenuItem>
+              ))}
+            </Menu>
             <IconButton
               onClick={() => setOpen(true)} aria-label="Open menu" color="primary"
               sx={{ display: { xs: 'inline-flex', md: 'none' } }}
